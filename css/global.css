@@ -1,0 +1,21 @@
+:root {
+    --BackgroundTop-Color: #D1C0CA;
+    --BackgroundBottom-Color: #C3CBD8;
+}
+
+body {
+    margin: auto;
+    height: 100vh;
+    background: linear-gradient(to bottom, var(--BackgroundTop-Color), var(--BackgroundBottom-Color));
+}
+
+#content {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#content img {
+    height: 40vh;
+}
