@@ -1,6 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+15&family=LXGW+WenKai+TC&family=Noto+Serif+TC:wght@200..900&display=swap');
+
 :root {
     --BackgroundTop-Color: #D1C0CA;
     --BackgroundBottom-Color: #C3CBD8;
+}
+
+.jersey-15 {
+    font-family: "Jersey 15", sans-serif;
+}
+
+.lxgw-wenkai {
+    font-family: "LXGW WenKai TC", cursive;
+}
+
+.noto-serif {
+    font-family: "Noto Serif TC", serif;
 }
 
 body {
