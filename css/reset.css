@@ -1,0 +1,13 @@
+#content {
+    flex-direction: column;
+}
+
+#resetBtn {
+    height: 64px;
+    width: 300px;
+    margin-top: 80px;
+    font-size: 2.4rem;
+    color: var(--Text-Secondary-Color);
+    border: 1px solid var(--Text-Secondary-Color);
+    border-radius: 32px;
+}

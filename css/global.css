@@ -3,6 +3,11 @@
 :root {
     --BackgroundTop-Color: #D1C0CA;
     --BackgroundBottom-Color: #C3CBD8;
+    --Primary-Color: #B18EAC;
+    --Unfilled-Color: #66696E;
+    --Text-Dark-Color: #404145;
+    --Text-Light-Color: #EDF6F1;
+    --Text-Secondary-Color: #73767D;
 }
 
 .jersey-15 {
@@ -15,6 +20,12 @@
 
 .noto-serif {
     font-family: "Noto Serif TC", serif;
+}
+
+button {
+    background: none;
+    border: none;
+    outline: none;
 }
 
 body {
