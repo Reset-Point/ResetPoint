@@ -1,0 +1,48 @@
+div.content {
+    flex-direction: column;
+}
+
+#animatedLoading {
+    height: 21vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#loadingBar {
+    height: 5vh;
+    width: 39.8vw;
+    margin-top: 7vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 5vh;
+    border: 2px solid var(--Text-Secondary-Color);
+    padding: 2px;
+}
+
+div.loadingBlock {
+    height: calc(5vh - 4px);
+    width: 1.6vw;
+    min-width: 1.6vw;
+    background: var(--Primary-Color);
+    margin-inline: 0.105vw;
+}
+
+#leftBlock {
+    border-top-left-radius: 5vh;
+    border-bottom-left-radius: 5vh;
+}
+
+#rightBlock {
+    border-top-right-radius: 5vh;
+    border-bottom-right-radius: 5vh;
+}
+
+#loadingText {
+    width: 39.8vw;
+    text-align: center;
+    margin: 0;
+    margin-top: 2vh;
+    font-size: 3vh;
+    color: var(--Text-Secondary-Color);
+}

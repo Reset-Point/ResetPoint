@@ -34,7 +34,7 @@ body {
     background: linear-gradient(to bottom, var(--BackgroundTop-Color), var(--BackgroundBottom-Color));
 }
 
-#content {
+div.content {
     height: 100vh;
     display: flex;
     justify-content: center;
