@@ -16,33 +16,34 @@
     <div id="loading" class="content">
         <img src="assets/images/logo.png" alt="logo">
         <div id="animatedLoading">
-            <div id="loadingBar">
-                <div id="leftBlock" class="loadingBlock"></div>
-                <div class="loadingBlock"></div>
-                <div class="loadingBlock"></div>
-                <div class="loadingBlock"></div>
-                <div class="loadingBlock"></div>
-                <div class="loadingBlock"></div>
-                <div class="loadingBlock"></div>
-                <div class="loadingBlock"></div>
-                <div class="loadingBlock"></div>
-                <div class="loadingBlock"></div>
-                <div class="loadingBlock"></div>
-                <div class="loadingBlock"></div>
-                <div class="loadingBlock"></div>
-                <div class="loadingBlock"></div>
-                <div class="loadingBlock"></div>
-                <div class="loadingBlock"></div>
-                <div class="loadingBlock"></div>
-                <div class="loadingBlock"></div>
-                <div class="loadingBlock"></div>
-                <div class="loadingBlock"></div>
-                <div class="loadingBlock"></div>
-                <div id="rightBlock" class="loadingBlock"></div>
-            </div>
+            <div id="loadingBar"></div>
             <p id="loadingText" class="jersey-15">LOADING......</p>
         </div>
     </div>
+
+    <script>
+        const loadingBar = document.getElementById('loadingBar')
+        const totalBlocks = 22
+        const delayPerBlock = 300
+
+        for (let i = 1; i <= totalBlocks; i++) {
+            const block = document.createElement('div')
+            block.className = 'loadingBlock'
+
+            if (i == 1) {
+                block.id = 'leftBlock'
+            }
+            if (i == totalBlocks) {
+                block.id = 'rightBlock'
+            }
+
+            loadingBar.appendChild(block)
+
+            setTimeout(() => {
+                block.classList.add('visible')
+            }, i * delayPerBlock)
+        }
+    </script>
 </body>
 
 </html>
