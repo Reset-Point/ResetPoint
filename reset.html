@@ -10,12 +10,31 @@
     <link rel="stylesheet" href="css/reset.css">
 
     <title>Reset Point — Reset</title>
+
+    <script>
+        const user = localStorage.getItem('user')
+        if (user) {
+            window.location.href = 'index.html'
+        }
+
+        function createUser() {
+            const now = new Date()
+            const minutes = now.getMinutes().toString().padStart(2, '0')
+            const seconds = now.getSeconds().toString().padStart(2, '0')
+            const userJson = {
+                name: `重置者${minutes}${seconds}`
+            }
+            localStorage.setItem('user', JSON.stringify(userJson))
+
+            window.location.href = 'index.html'
+        }
+    </script>
 </head>
 
 <body>
     <div class="content">
         <img src="assets/images/logo.png" alt="">
-        <button id="resetBtn" class="jersey-15" type="button">RESET</button>
+        <button id="resetBtn" class="jersey-15" type="button" onclick="createUser()">RESET</button>
     </div>
 </body>
 

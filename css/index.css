@@ -1,5 +1,6 @@
-div.content {
+#loading {
     flex-direction: column;
+    z-index: 99;
 }
 
 #animatedLoading {
@@ -21,7 +22,7 @@ div.content {
 }
 
 div.loadingBlock {
-    height: calc(4vh - 4px);
+    height: 3.8vh;
     width: 1.6vw;
     min-width: 1.6vw;
     margin-inline: 0.105vw;
@@ -48,4 +49,15 @@ div.visible {
     margin-top: 2vh;
     font-size: 4vh;
     color: var(--Text-Secondary-Color);
+}
+
+#lobby {
+    display: none;
+    padding-block: 3vh;
+    padding-inline: 1vw;
+}
+
+#userProfile {
+    width: 5vw;
+    border-radius: 0.5vw;
 }

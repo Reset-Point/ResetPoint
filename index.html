@@ -21,6 +21,10 @@
         </div>
     </div>
 
+    <div id="lobby" class="const">
+        <img id="userProfile" src="assets/images/userProfile.png" alt="user profile">
+    </div>
+
     <script>
         const loadingBar = document.getElementById('loadingBar')
         const totalBlocks = 22
@@ -43,6 +47,21 @@
                 block.classList.add('visible')
             }, i * delayPerBlock)
         }
+
+        const totalTime = (totalBlocks + 1) * delayPerBlock
+        setTimeout(() => {
+            const userJson = localStorage.getItem('user')
+
+            if (userJson) {
+
+            }
+            else {
+                window.location.href = 'reset.html'
+            }
+
+            document.getElementById('loading').style.display = 'none'
+            document.getElementById('lobby').style.display = 'block'
+        }, totalTime)
     </script>
 </body>
 
