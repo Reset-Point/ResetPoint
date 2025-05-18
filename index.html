@@ -13,19 +13,67 @@
 </head>
 
 <body>
-    <div id="loading" class="content">
+    <!--<div id="loading" class="content">
         <img src="assets/images/logo.png" alt="logo">
         <div id="animatedLoading">
             <div id="loadingBar"></div>
             <p id="loadingText" class="jersey-15">LOADING......</p>
         </div>
-    </div>
+    </div>-->
 
     <div id="lobby" class="const">
-        <img id="userProfile" src="assets/images/userProfile.png" alt="user profile">
+        <div id="profile">
+            <img src="assets/images/userProfile.png" alt="user profile">
+            <div id="profileDetail">
+                <p id="profileName" class="lxgw-wenkai">用戶名稱</p>
+                <p id="profileId" class="lxgw-wenkai">#05132468</p>
+                <div id="profileExpBar"></div>
+            </div>
+        </div>
+        <div id="lobbyBody">
+            <div id="reseterData">
+                <p class="lxgw-wenkai">體力</p>
+                <div id="strength" class="dataBar"></div>
+                <p class="lxgw-wenkai">智力</p>
+                <div id="strength" class="dataBar"></div>
+                <p class="lxgw-wenkai">敏捷</p>
+                <div id="strength" class="dataBar"></div>
+                <p class="lxgw-wenkai">運氣</p>
+                <div id="strength" class="dataBar"></div>
+            </div>
+            <div id="game">
+                <p id="gameName" class="noto-serif">甜蜜偽像</p>
+                <div>
+                    <p>轉盤區塊</p>
+                </div>
+            </div>
+            <div id="mission">
+                <div id="missionTitle">
+                    <p class="jersey-15">MISSION</p>
+                </div>
+                <div id="missionDetail">
+
+                </div>
+            </div>
+        </div>
+        <div id="gameDetail">
+            <div id="gameIntro">
+                <p id="gameIntroTitle" class="lxgw-wenkai">副本介紹</p>
+                <p id="gameIntroContent">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto iusto fuga
+                    eligendi, facere, dolores hic nostrum aut nemo laboriosam id ad fugit corrupti, fugiat nulla
+                    voluptates
+                    officia totam tempore enim.</p>
+            </div>
+            <div id="gameProgress">
+                <p id="gameProgressTitle" class="lxgw-wenkai">副本進度 70%</p>
+                <div id="gameProgressBar"></div>
+                <p id="UnlockEndingTitle" class="lxgw-wenkai">解鎖結局（2/3）</p>
+                <div class="UnlockEndingCircle"></div>
+            </div>
+        </div>
     </div>
 
-    <script>
+    <!--<script>
         const loadingBar = document.getElementById('loadingBar')
         const totalBlocks = 22
         const delayPerBlock = 300
@@ -62,7 +110,7 @@
             document.getElementById('loading').style.display = 'none'
             document.getElementById('lobby').style.display = 'block'
         }, totalTime)
-    </script>
+    </script>-->
 </body>
 
 </html>

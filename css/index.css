@@ -52,12 +52,148 @@ div.visible {
 }
 
 #lobby {
-    display: none;
-    padding-block: 3vh;
+    /*display: none;*/
+    padding-block: 1vh;
     padding-inline: 1vw;
 }
 
-#userProfile {
-    width: 5vw;
-    border-radius: 0.5vw;
+#profile {
+    padding-block: 2vh;
+    display: flex;
+}
+
+#profile img {
+    width: 10vh;
+    height: 10vh;
+    min-width: 10vh;
+    min-height: 10vh;
+    border-radius: 1vh;
+}
+
+#profileDetail {
+    margin: auto;
+    margin-left: 1vw;
+}
+
+#profileName {
+    font-size: 1.2rem;
+    color: var(--Text-Dark-Color);
+}
+
+#profileId {
+    margin-block: 0.5vh;
+    font-size: 0.9rem;
+    color: var(--Text-Dark-Color);
+}
+
+#profileExpBar {
+    height: 1vh;
+    width: 8vw;
+    background: var(--Unfilled-Color);
+}
+
+#lobbyBody {
+    height: 60vh;
+    display: flex;
+}
+
+#reseterData {
+    width: 12vw;
+    margin-top: 10vh;
+    margin-right: 0.5vw;
+}
+
+div.dataBar {
+    height: 1vh;
+    width: 10vw;
+    background: var(--Unfilled-Color);
+    margin-top: 1vh;
+    margin-bottom: 2vh;
+}
+
+#game {
+    width: 73vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#gameName {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--Text-Dark-Color);
+}
+
+#mission {
+    width: 12.5vw;
+    margin-top: 7vh;
+}
+
+#missionTitle {
+    background: var(--Text-Dark-Color);
+}
+
+#missionTitle p {
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--Text-Light-Color);
+    padding-block: 0.5vh;
+}
+
+#missionDetail {
+    margin-top: 0.5vh;
+    height: 30vh;
+    background: var(--Text-Dark-RGB);
+}
+
+#gameDetail {
+    width: 70vw;
+    height: 16vh;
+    margin: auto;
+    border-radius: 3vh;
+    border: 2px solid var(--Text-Secondary-Color);
+    padding-inline: 2.6vw;
+    padding-block: 2vh;
+    display: flex;
+}
+
+#gameIntroTitle {
+    font-size: 1.4rem;
+    color: var(--Text-Dark-Color);
+}
+
+#gameIntroContent {
+    font-size: 1rem;
+    color: var(--Text-Dark-Color);
+}
+
+#gameProgress {
+    margin-inline: 2vw;
+    margin-block: 1vh;
+}
+
+#gameProgressTitle {
+    font-size: 1.1rem;
+    color: var(--Text-Dark-Color);
+    margin-bottom: 1vh;
+}
+
+#gameProgressBar {
+    height: 1vh;
+    width: 10vw;
+    background: var(--Unfilled-Color);
+}
+
+#UnlockEndingTitle {
+    font-size: 1.1rem;
+    color: var(--Text-Dark-Color);
+    margin-top: 2vh;
+    margin-bottom: 1vh;
+}
+
+div.UnlockEndingCircle {
+    height: 1.8vh;
+    width: 1.8vh;
+    border-radius: 1vh;
+    background: var(--Unfilled-Color);
 }
