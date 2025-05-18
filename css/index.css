@@ -97,6 +97,44 @@ div.visible {
     display: flex;
 }
 
+#carousel {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s ease;
+}
+
+div.card {
+    width: 16vh;
+    height: 24vh;
+    background: linear-gradient(to bottom, #ffd700, #ff4500);
+    border-radius: 2vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 8vh 0 0 -4vw;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    backface-visibility: hidden;
+    transition: transform 0.5s;
+}
+
+div.card.active {
+    transform: scale(1.2) !important;
+    z-index: 10;
+    background: #ffd700;
+}
+
+#enterBtn {
+    height: 5vh;
+    width: 12vw;
+    margin-top: 40vh;
+    font-size: 4vh;
+    background: var(--Primary-Color);
+    color: var(--Text-Light-Color);
+    border: 2px solid var(---Primary-Color);
+    border-radius: 7vh;
+    cursor: pointer;
+}
+
 #reseterData {
     width: 12vw;
     margin-top: 10vh;

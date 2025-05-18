@@ -43,9 +43,8 @@
             </div>
             <div id="game">
                 <p id="gameName" class="noto-serif">甜蜜偽像</p>
-                <div>
-                    <p>轉盤區塊</p>
-                </div>
+                <div id="carousel"></div>
+                <button id="enterBtn" class="jersey-15">ENTER</button>
             </div>
             <div id="mission">
                 <div id="missionTitle">
@@ -73,8 +72,8 @@
         </div>
     </div>
 
-    <!--<script>
-        const loadingBar = document.getElementById('loadingBar')
+    <script>
+        /*const loadingBar = document.getElementById('loadingBar')
         const totalBlocks = 22
         const delayPerBlock = 300
 
@@ -109,8 +108,67 @@
 
             document.getElementById('loading').style.display = 'none'
             document.getElementById('lobby').style.display = 'block'
-        }, totalTime)
-    </script>-->
+        }, totalTime)*/
+
+        const gameNames = [
+            '甜蜜偽像',
+            '點燈人',
+            '航海日誌',
+            'CV-E20',
+            '上行失效',
+            '鏡像修正',
+            '下水道收信人',
+            '複寫公寓',
+            '幻象折射',
+            '分紅日',
+            '目擊者',
+            '偏差筆錄'
+        ]
+
+        const carousel = document.getElementById('carousel');
+        const cardCount = 12;
+        const radius = 450;
+        const step = 360 / cardCount;
+        let angle = 0;
+
+        //建立卡片並加上 data-index
+        for (let i = 0; i < cardCount; i++) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.dataset.index = i;
+            const theta = step * i;
+            card.style.transform = `rotateY(${theta}deg) translateZ(${radius}px)`;
+            carousel.appendChild(card);
+        }
+
+        //設定放大卡牌
+        function updateActiveCard() {
+            const index = ((-angle / step) % cardCount + cardCount) % cardCount;
+            const roundedIndex = Math.round(index);
+
+            document.querySelectorAll('.card').forEach(card => {
+                const i = parseInt(card.dataset.index);
+                const theta = step * i;
+                const isActive = i === Math.round(index);
+                const scale = isActive ? 1.2 : 1;
+                card.style.transform = `rotateY(${theta}deg) translateZ(${radius}px) scale(${scale})`;
+                card.style.zindex = isActive ? 10 : 1;
+            });
+
+            document.getElementById('gameName').innerText = gameNames[roundedIndex];
+        }
+
+        //初次啟動就放大卡牌
+        updateActiveCard();
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') angle -= step;
+            if (e.key === 'ArrowLeft') angle += step;
+            carousel.style.transform = `rotateY(${angle}deg)`;
+            updateActiveCard();
+        });
+
+    </script>
 </body>
 
 </html>
