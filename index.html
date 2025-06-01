@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/index.css">
 
+    <script src="js/tool.js"></script>
+
     <title>Reset Point</title>
 </head>
 
@@ -21,26 +23,48 @@
         </div>
     </div>
 
-    <div id="lobby" class="const">
-        <div id="profile">
-            <img src="assets/images/userProfile.png" alt="user profile">
-            <div id="profileDetail">
-                <p id="profileName" class="lxgw-wenkai">用戶名稱</p>
-                <p id="profileId" class="lxgw-wenkai">#05132468</p>
-                <div id="profileExpBar"></div>
+    <div id="lobby" class="content">
+        <div class="topTool">
+            <!-- 個人資料 -->
+            <div id="profile">
+                <img src="assets/images/userProfile.png" alt="user profile">
+                <div id="profileDetail">
+                    <p id="profileName" class="lxgw-wenkai">用戶名稱</p>
+                    <p id="profileId" class="lxgw-wenkai">#05132468</p>
+                    <div id="profileExpBar">
+                        <div id="profileExpBarFill"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- 工具列 -->
+            <div class="toolGroup">
+                <button class="tool" id="resetpjBtn"></button>
+                <button class="tool" id="removeBtn"></button>
+                <button class="tool" id="musicBtn"></button>
+                <button class="tool" id="settingBtn"></button>
             </div>
         </div>
         <div id="lobbyBody">
+            <!-- 數值列表 -->
             <div id="reseterData">
                 <p class="lxgw-wenkai">體力</p>
-                <div id="strength" class="dataBar"></div>
+                <div class="dataBar">
+                    <div id="strength" class="fill"></div>
+                </div>
                 <p class="lxgw-wenkai">智力</p>
-                <div id="strength" class="dataBar"></div>
+                <div class="dataBar">
+                    <div id="intelligence" class="fill"></div>
+                </div>
                 <p class="lxgw-wenkai">敏捷</p>
-                <div id="strength" class="dataBar"></div>
+                <div class="dataBar">
+                    <div id="agility" class="fill"></div>
+                </div>
                 <p class="lxgw-wenkai">運氣</p>
-                <div id="strength" class="dataBar"></div>
+                <div class="dataBar">
+                    <div id="fortune" class="fill"></div>
+                </div>
             </div>
+            <!-- 中心 -->
             <div id="game">
                 <p id="gameName" class="noto-serif">甜蜜偽像</p>
                 <div id="carouselContain">
@@ -48,6 +72,7 @@
                 </div>
                 <button id="enterBtn" class="enter jersey-15">ENTER</button>
             </div>
+            <!-- 任務列表 -->
             <div id="mission">
                 <div id="missionTitle">
                     <p class="jersey-15">MISSION</p>
@@ -57,12 +82,11 @@
                 </div>
             </div>
         </div>
+        <!-- 檔案資料 -->
         <div id="gameDetail" class="hide-scrollbar">
             <div id="gameIntro">
                 <p id="gameIntroTitle" class="lxgw-wenkai">檔案資料</p>
-                <p id="gameIntroContent">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos officia ipsum
-                    ducimus tenetur numquam perferendis quam dicta amet quae fugit deserunt quasi temporibus, cum nam
-                    fuga neque atque, animi mollitia.</p>
+                <p id="gameIntroContent" class="lxgw-wenkai"></p>
             </div>
             <div id="gameProgress">
                 <p id="gameProgressTitle" class="lxgw-wenkai">重置進度 70%</p>
@@ -74,6 +98,7 @@
     </div>
 
     <script>
+
         const loadingBar = document.getElementById('loadingBar')
         const totalBlocks = 22
         const delayPerBlock = 300
@@ -81,7 +106,6 @@
         let isPageLoaded = false
         let isAnimationDone = false
 
-        // 建立 loading 動畫方塊
         for (let i = 1; i <= totalBlocks; i++) {
             const block = document.createElement('div')
             block.className = 'loadingBlock'
@@ -96,22 +120,18 @@
             }, i * delayPerBlock)
         }
 
-        // ✅ 計算動畫總長度
         const totalTime = (totalBlocks + 1) * delayPerBlock
 
-        // ✅ 動畫結束標記
         setTimeout(() => {
             isAnimationDone = true
             tryToEnterLobby()
         }, totalTime)
 
-        // ✅ 頁面載入完成標記
         window.onload = () => {
             isPageLoaded = true
             tryToEnterLobby()
         }
 
-        // ✅ 兩條件都成立才切換畫面
         function tryToEnterLobby() {
             if (isPageLoaded && isAnimationDone) {
                 const userJson = localStorage.getItem('user')
@@ -125,42 +145,9 @@
                 document.getElementById('lobby').style.display = 'block'
             }
         }
-        /*const loadingBar = document.getElementById('loadingBar')
-        const totalBlocks = 22
-        const delayPerBlock = 300
 
-        for (let i = 1 i <= totalBlocks i++) {
-            const block = document.createElement('div')
-            block.className = 'loadingBlock'
-
-            if (i == 1) {
-                block.id = 'leftBlock'
-            }
-            if (i == totalBlocks) {
-                block.id = 'rightBlock'
-            }
-
-            loadingBar.appendChild(block)
-
-            setTimeout(() => {
-                block.classList.add('visible')
-            }, i * delayPerBlock)
-        }
-
-        const totalTime = (totalBlocks + 1) * delayPerBlock
-        setTimeout(() => {
-            const userJson = localStorage.getItem('user')
-
-            if (userJson) {
-
-            }
-            else {
-                window.location.href = 'reset.html'
-            }
-
-            document.getElementById('loading').style.display = 'none'
-            document.getElementById('lobby').style.display = 'block'
-        }, totalTime)*/
+        const userJson = localStorage.getItem('user')
+        const user = JSON.parse(userJson)
 
         //遊戲名稱
         const gameNames = [
@@ -257,6 +244,12 @@
             狀態：監控中／未知運行錯誤（2）<br>
             風險：中度認知紊亂`
         ]
+
+        document.getElementById('profileExpBarFill').style.width = `${user.experience / 25}%`//經驗值比例
+        document.getElementById('strength').style.width = `${user.strength}%`
+        document.getElementById('intelligence').style.width = `${user.intelligence}%`
+        document.getElementById('agility').style.width = `${user.agility}%`
+        document.getElementById('fortune').style.width = `${user.fortune}%`
 
         const carousel = document.getElementById('carousel')
         const cardCount = 12

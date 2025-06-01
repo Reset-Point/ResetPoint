@@ -1,0 +1,32 @@
+#root {
+    display: block;
+    padding-block: 1vh;
+    padding-inline: 1vw;
+}
+
+#rootBody {
+    height: 60vh;
+    display: flex;
+}
+
+#rootDetail {
+    width: 70vw;
+    height: 16vh;
+    margin: auto;
+    border-radius: 3vh;
+    border: 2px solid var(--Text-Secondary-Color);
+    padding-inline: 2.6vw;
+    padding-block: 2vh;
+}
+
+#rootDetailTitle {
+    font-size: 1.4rem;
+    color: var(--Text-Dark-Color);
+}
+
+#rootIntroContent {
+    margin: 0;
+    margin-top: 10px;
+    font-size: 1rem;
+    color: var(--Text-Dark-Color);
+}

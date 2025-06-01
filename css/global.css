@@ -10,6 +10,7 @@
     --Text-Dark-RGB: rgba(60, 65, 69, 0.5);
     /*6*/
     --Text-Light-Color: #EDF6F1;
+    --Text-Light-RGB: rgba(237, 246, 241, 0.5);
     /*7*/
     --Text-Secondary-Color: #73767D;
     /*4*/
@@ -53,12 +54,46 @@ body {
 }
 
 div.content {
-    height: 100vh;
+    height: 98vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#content img {
-    height: 40vh;
+div.topTool {
+    display: flex;
+    justify-content: space-between;
+    height: 14vh;
+}
+
+div.leave {
+    padding-top: 1vh;
+}
+
+div.toolGroup {
+    display: flex;
+    padding-top: 1vh;
+}
+
+a {
+    outline: none;
+}
+
+button.tool {
+    width: 3.6vh;
+    height: 3.6vh;
+    border-radius: 1.8vh;
+    padding: 5px;
+    border: 1px solid var(--Text-Dark-RGB);
+    background: var(--Text-Light-RGB);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-inline: 5px;
+    outline: none;
+}
+
+svg.icon {
+    color: var(--Text-Dark-RGB);
 }

@@ -7,12 +7,43 @@
 
     <link rel="shortcut icon" href="assets/images/logo.ico">
     <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/root.css">
+
+    <script src="js/tool.js"></script>
 
     <title>Reset Point — Root</title>
 </head>
 
 <body>
+    <div id="root" class="content">
+        <div class="topTool">
+            <div class="leave">
+                <a href="index.html">
+                    <button class="tool">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6 icon">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+                        </svg>
+                    </button>
+                </a>
+            </div>
+            <div class="toolGroup">
+                <button class="tool" id="resetpjBtn"></button>
+                <button class="tool" id="removeBtn"></button>
+                <button class="tool" id="musicBtn"></button>
+                <button class="tool" id="settingBtn"></button>
+            </div>
+        </div>
+        <div id="rootBody"></div>
+        <div id="rootDetail" class="hide-scrollbar">
+            <p id="rootDetailTitle" class="lxgw-wenkai">節點資料</p>
+            <p id="rootIntroContent" class="lxgw-wenkai">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Ratione earum itaque similique nobis aliquid laborum numquam quam, veritatis optio, totam qui
+                dignissimos amet unde, quos rem dolor commodi accusamus. Nostrum?</p>
+        </div>
+    </div>
+
 
 </body>
 

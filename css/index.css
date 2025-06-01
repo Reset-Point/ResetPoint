@@ -87,9 +87,16 @@ div.visible {
 }
 
 #profileExpBar {
+    position: relative;
     height: 1vh;
     width: 10vw;
     background: var(--Unfilled-Color);
+}
+
+#profileExpBarFill {
+    height: 1vh;
+    width: 10vw;
+    background: var(--Primary-Color);
 }
 
 #lobbyBody {
@@ -104,11 +111,18 @@ div.visible {
 }
 
 div.dataBar {
+    position: relative;
     height: 1vh;
     width: 10vw;
     background: var(--Unfilled-Color);
     margin-top: 1vh;
     margin-bottom: 2vh;
+}
+
+div.fill {
+    height: 1vh;
+    width: 10vw;
+    background: var(--Primary-Color);
 }
 
 #game {
