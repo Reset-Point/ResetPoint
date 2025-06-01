@@ -13,13 +13,13 @@
 </head>
 
 <body>
-    <!--<div id="loading" class="content">
+    <div id="loading" class="content">
         <img src="assets/images/logo.png" alt="logo">
         <div id="animatedLoading">
             <div id="loadingBar"></div>
             <p id="loadingText" class="jersey-15">LOADING......</p>
         </div>
-    </div>-->
+    </div>
 
     <div id="lobby" class="const">
         <div id="profile">
@@ -43,8 +43,10 @@
             </div>
             <div id="game">
                 <p id="gameName" class="noto-serif">甜蜜偽像</p>
-                <div id="carousel"></div>
-                <button id="enterBtn" class="jersey-15">ENTER</button>
+                <div id="carouselContain">
+                    <div id="carousel"></div>
+                </div>
+                <button id="enterBtn" class="enter jersey-15">ENTER</button>
             </div>
             <div id="mission">
                 <div id="missionTitle">
@@ -55,16 +57,15 @@
                 </div>
             </div>
         </div>
-        <div id="gameDetail">
+        <div id="gameDetail" class="hide-scrollbar">
             <div id="gameIntro">
-                <p id="gameIntroTitle" class="lxgw-wenkai">副本介紹</p>
-                <p id="gameIntroContent">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto iusto fuga
-                    eligendi, facere, dolores hic nostrum aut nemo laboriosam id ad fugit corrupti, fugiat nulla
-                    voluptates
-                    officia totam tempore enim.</p>
+                <p id="gameIntroTitle" class="lxgw-wenkai">檔案資料</p>
+                <p id="gameIntroContent">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos officia ipsum
+                    ducimus tenetur numquam perferendis quam dicta amet quae fugit deserunt quasi temporibus, cum nam
+                    fuga neque atque, animi mollitia.</p>
             </div>
             <div id="gameProgress">
-                <p id="gameProgressTitle" class="lxgw-wenkai">副本進度 70%</p>
+                <p id="gameProgressTitle" class="lxgw-wenkai">重置進度 70%</p>
                 <div id="gameProgressBar"></div>
                 <p id="UnlockEndingTitle" class="lxgw-wenkai">解鎖結局（2/3）</p>
                 <div class="UnlockEndingCircle"></div>
@@ -73,11 +74,62 @@
     </div>
 
     <script>
+        const loadingBar = document.getElementById('loadingBar')
+        const totalBlocks = 22
+        const delayPerBlock = 300
+
+        let isPageLoaded = false
+        let isAnimationDone = false
+
+        // 建立 loading 動畫方塊
+        for (let i = 1; i <= totalBlocks; i++) {
+            const block = document.createElement('div')
+            block.className = 'loadingBlock'
+
+            if (i === 1) block.id = 'leftBlock'
+            if (i === totalBlocks) block.id = 'rightBlock'
+
+            loadingBar.appendChild(block)
+
+            setTimeout(() => {
+                block.classList.add('visible')
+            }, i * delayPerBlock)
+        }
+
+        // ✅ 計算動畫總長度
+        const totalTime = (totalBlocks + 1) * delayPerBlock
+
+        // ✅ 動畫結束標記
+        setTimeout(() => {
+            isAnimationDone = true
+            tryToEnterLobby()
+        }, totalTime)
+
+        // ✅ 頁面載入完成標記
+        window.onload = () => {
+            isPageLoaded = true
+            tryToEnterLobby()
+        }
+
+        // ✅ 兩條件都成立才切換畫面
+        function tryToEnterLobby() {
+            if (isPageLoaded && isAnimationDone) {
+                const userJson = localStorage.getItem('user')
+
+                if (!userJson) {
+                    window.location.href = 'reset.html'
+                    return
+                }
+
+                document.getElementById('loading').style.display = 'none'
+                document.getElementById('lobby').style.display = 'block'
+            }
+        }
         /*const loadingBar = document.getElementById('loadingBar')
         const totalBlocks = 22
         const delayPerBlock = 300
 
-        for (let i = 1; i <= totalBlocks; i++) {
+        for (let i = 1 i <= totalBlocks i++) {
             const block = document.createElement('div')
             block.className = 'loadingBlock'
 
@@ -110,6 +162,7 @@
             document.getElementById('lobby').style.display = 'block'
         }, totalTime)*/
 
+        //遊戲名稱
         const gameNames = [
             '甜蜜偽像',
             '點燈人',
@@ -125,48 +178,152 @@
             '偏差筆錄'
         ]
 
-        const carousel = document.getElementById('carousel');
-        const cardCount = 12;
-        const radius = 450;
-        const step = 360 / cardCount;
-        let angle = 0;
+        //卡牌封面連結
+        const imageUrls = [
+            'assets/images/logo.png',
+            'assets/images/logo.png',
+            'assets/images/logo.png',
+            'assets/images/logo.png',
+            'assets/images/logo.png',
+            'assets/images/logo.png',
+            'assets/images/logo.png',
+            'assets/images/logo.png',
+            'assets/images/logo.png',
+            'assets/images/logo.png',
+            'assets/images/logo.png',
+            'assets/images/logo.png'
+        ]
+
+        //副本介紹
+        const describes = [
+            `[ RESET POINT SYSTEM // ACCESS LOG 003 ]<br>
+            檔案名稱：甜蜜偽像（#RP-LUV-001-HONEY）<br>
+            標籤：情感依附｜虛擬投射｜AI操控<br>
+            狀態：模擬運行中／錯誤碼已累積（4）<br>
+            風險：中度情感失控`,
+            `[ RESET POINT SYSTEM // ACCESS LOG 004 ]<br>
+            檔案名稱：點燈人（#RP-FLK-001-LANTERN）<br>
+            標籤：民俗信仰｜異質召喚｜鄉村祭儀<br>
+            狀態：觀察中／低頻事件回溯（2）<br>
+            風險：輕度心理共振`,
+            `[ RESET POINT SYSTEM // ACCESS LOG 005 ]<br>
+            檔案名稱：航海日誌（#RP-SEA-001-SEA）<br>
+            標籤：航海恐怖｜未知生物｜封閉空間<br>
+            狀態：封鎖中／異常寫入終止（2）<br>
+            風險：重度情感失控`,
+            `[ RESET POINT SYSTEM // ACCESS LOG 001 ]<br>
+            檔案名稱：CV-E20（#RP-MEM-001-CVE20）<br>
+            標籤：記憶重疊｜疫情爆發｜雙重破壞<br>
+            狀態：封鎖中／重構循環異常（5）<br>
+            風險：中度記憶錯亂`,
+            `[ RESET POINT SYSTEM // ACCESS LOG 006 ]<br>
+            檔案名稱：上行失效（#RP-EVO-001-CLIMB）<br>
+            標籤：空間錯亂｜樓層循環｜上行封鎖<br>
+            狀態：觀察中／重構循環異常（2）<br>
+            風險：輕度薄膜裂縫`,
+            `[ RESET POINT SYSTEM // ACCESS LOG 007 ]<br>
+            檔案名稱：鏡像修正（#RP-MEM-002-MIRRORFIX）<br>
+            標籤：鏡像平行｜自我分裂｜替代意識<br>
+            狀態：封鎖中／未知運行錯誤（7）<br>
+            風險：中度認知紊亂`,
+            ` RESET POINT SYSTEM // ACCESS LOG 008 ]<br>
+            檔案名稱：下水道收信人（#RP-SOC-001-SEWER）<br>
+            標籤：地下通訊｜反抗組織｜匿名任務<br>
+            狀態：調查中／低頻事件回朔（3）<br>
+            風險：中度心理共振`,
+            `[ RESET POINT SYSTEM // ACCESS LOG 009 ]<br>
+            檔案名稱：複寫公寓（#RP-MEM-003-COPYAPT）<br>
+            標籤：複製時空｜時空重疊｜角色異常<br>
+            狀態：異常刷新中／錯誤碼已累積（12）<br>
+            風險：輕度系統錯誤`,
+            `[ RESET POINT SYSTEM // ACCESS LOG 010 ]<br>
+            檔案名稱：幻象折射（#RP-MEM-004-ILLUSION）<br>
+            標籤：影像替代｜異常重現｜記憶紊亂<br>
+            狀態：異常運行中／低頻事件回朔（3）<br>
+            風險：重度認知紊亂`,
+            `[ RESET POINT SYSTEM // ACCESS LOG 011 ]<br>
+            檔案名稱：分紅日（#RP-SOC-002-DIVIDEND）<br>
+            標籤：職場壓力｜精神崩潰｜社會淘汰<br>
+            狀態：封鎖中／重構循環異常（1）<br>
+            風險：輕度情感失控`,
+            `[ RESET POINT SYSTEM // ACCESS LOG 012 ]<br>
+            檔案名稱：目擊者（#RP-SOC-003-WITNESS）<br>
+            標籤：匿名監控｜事件扭曲｜殺手真相<br>
+            狀態：封鎖中／錯誤碼已累積（6）<br>
+            風險：輕度心理共振`,
+            `[ RESET POINT SYSTEM // ACCESS LOG 013 ]<br>
+            檔案名稱：偏差筆錄（#RP-MEM-005-DEVIATION）<br>
+            標籤：主觀現實｜錯亂敘事｜觀測干擾<br>
+            狀態：監控中／未知運行錯誤（2）<br>
+            風險：中度認知紊亂`
+        ]
+
+        const carousel = document.getElementById('carousel')
+        const cardCount = 12
+        const radius = 450
+        const step = 360 / cardCount
+        let angle = 0
 
         //建立卡片並加上 data-index
         for (let i = 0; i < cardCount; i++) {
-            const card = document.createElement('div');
-            card.className = 'card';
-            card.dataset.index = i;
-            const theta = step * i;
-            card.style.transform = `rotateY(${theta}deg) translateZ(${radius}px)`;
-            carousel.appendChild(card);
+            const card = document.createElement('div')
+            card.className = 'card'
+            card.dataset.index = i
+
+            const img = document.createElement('img')
+            img.className = 'cover'
+            img.src = imageUrls[i]
+            img.alt = gameNames[i]
+            card.appendChild(img)
+
+            const theta = step * i
+            card.style.transform = `rotateY(${theta}deg) translateZ(${radius}px)`
+            carousel.appendChild(card)
         }
 
         //設定放大卡牌
         function updateActiveCard() {
-            const index = ((-angle / step) % cardCount + cardCount) % cardCount;
-            const roundedIndex = Math.round(index);
+            const index = ((-angle / step) % cardCount + cardCount) % cardCount
+            const roundedIndex = Math.round(index)
 
             document.querySelectorAll('.card').forEach(card => {
-                const i = parseInt(card.dataset.index);
-                const theta = step * i;
-                const isActive = i === Math.round(index);
-                const scale = isActive ? 1.2 : 1;
-                card.style.transform = `rotateY(${theta}deg) translateZ(${radius}px) scale(${scale})`;
-                card.style.zindex = isActive ? 10 : 1;
-            });
+                const i = parseInt(card.dataset.index)
+                const theta = step * i
+                const isActive = i === Math.round(index)
+                const scale = isActive ? 1.2 : 1
+                card.style.transform = `rotateY(${theta}deg) translateZ(${radius}px) scale(${scale})`
+                card.style.zIndex = isActive ? 10 : 1
+            })
 
-            document.getElementById('gameName').innerText = gameNames[roundedIndex];
+            document.getElementById('gameName').innerText = gameNames[roundedIndex]
+            const enterBtn = document.getElementById('enterBtn')
+            document.getElementById('gameIntroContent').innerHTML = describes[roundedIndex]
+
+            if (gameNames[roundedIndex] == '甜蜜偽像') {
+                enterBtn.innerText = 'ENTER'
+                enterBtn.className = 'enter jersey-15'
+            }
+            else {
+                enterBtn.innerText = 'LOCKED'
+                enterBtn.className = 'locked jersey-15'
+            }
+
+            enterBtn.addEventListener('click', (e) => {
+                if (gameNames[roundedIndex] == '甜蜜偽像') {
+                    window.location.href = 'root.html'
+                }
+            })
         }
 
         //初次啟動就放大卡牌
-        updateActiveCard();
+        updateActiveCard()
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') angle -= step;
-            if (e.key === 'ArrowLeft') angle += step;
-            carousel.style.transform = `rotateY(${angle}deg)`;
-            updateActiveCard();
-        });
+            if (e.key === 'ArrowRight') angle -= step
+            if (e.key === 'ArrowLeft') angle += step
+            carousel.style.transform = `rotateY(${angle}deg)`
+            updateActiveCard()
+        })
 
     </script>
 </body>

@@ -30,6 +30,16 @@
     margin: 0;
 }
 
+/*隱藏滾軸工具*/
+.hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
 button {
     background: none;
     border: none;

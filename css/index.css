@@ -52,7 +52,7 @@ div.visible {
 }
 
 #lobby {
-    /*display: none;*/
+    display: none;
     padding-block: 1vh;
     padding-inline: 1vw;
 }
@@ -88,51 +88,13 @@ div.visible {
 
 #profileExpBar {
     height: 1vh;
-    width: 8vw;
+    width: 10vw;
     background: var(--Unfilled-Color);
 }
 
 #lobbyBody {
     height: 60vh;
     display: flex;
-}
-
-#carousel {
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 1s ease;
-}
-
-div.card {
-    width: 16vh;
-    height: 24vh;
-    background: linear-gradient(to bottom, #ffd700, #ff4500);
-    border-radius: 2vh;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: 8vh 0 0 -4vw;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-    backface-visibility: hidden;
-    transition: transform 0.5s;
-}
-
-div.card.active {
-    transform: scale(1.2) !important;
-    z-index: 10;
-    background: #ffd700;
-}
-
-#enterBtn {
-    height: 5vh;
-    width: 12vw;
-    margin-top: 40vh;
-    font-size: 4vh;
-    background: var(--Primary-Color);
-    color: var(--Text-Light-Color);
-    border: 2px solid var(---Primary-Color);
-    border-radius: 7vh;
-    cursor: pointer;
 }
 
 #reseterData {
@@ -154,12 +116,76 @@ div.dataBar {
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-width: 900px;
 }
 
 #gameName {
     font-size: 3rem;
     font-weight: 900;
     color: var(--Text-Dark-Color);
+}
+
+#carouselContain {
+    perspective: 3000px;
+    perspective-origin: center center;
+    width: 73vw;
+    height: 42vh;
+    min-width: 900px;
+    position: relative;
+}
+
+#carousel {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s ease;
+}
+
+div.card {
+    width: 16vh;
+    height: 24vh;
+    background: linear-gradient(to bottom, var(--BackgroundTop-Color), var(--BackgroundBottom-Color));
+    border-radius: 2vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 8vh 0 0 -4vw;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    backface-visibility: hidden;
+    transform-origin: center center;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+}
+
+div.card.active {
+    transform: scale(1.2) !important;
+    z-index: 10;
+    background: var(--BackgroundTop-Color);
+}
+
+img.cover {
+    width: 16vh;
+    height: 24vh;
+    object-fit: contain;
+    overflow: hidden;
+}
+
+#enterBtn {
+    height: 5vh;
+    width: 12vw;
+    font-size: 4vh;
+    border-radius: 7vh;
+}
+
+button.enter {
+    background: var(--Primary-Color);
+    color: var(--Text-Light-Color);
+    cursor: pointer;
+}
+
+button.locked {
+    background: var(--Unfilled-Color);
+    color: var(--Text-Dark-Color);
+    cursor: default;
 }
 
 #mission {
@@ -193,6 +219,8 @@ div.dataBar {
     padding-inline: 2.6vw;
     padding-block: 2vh;
     display: flex;
+    justify-content: space-between;
+    overflow: scroll;
 }
 
 #gameIntroTitle {
@@ -201,13 +229,16 @@ div.dataBar {
 }
 
 #gameIntroContent {
+    margin: 0;
+    margin-top: 10px;
     font-size: 1rem;
     color: var(--Text-Dark-Color);
 }
 
 #gameProgress {
-    margin-inline: 2vw;
+    margin-left: 2vw;
     margin-block: 1vh;
+    min-width: 150px;
 }
 
 #gameProgressTitle {
@@ -220,6 +251,7 @@ div.dataBar {
     height: 1vh;
     width: 10vw;
     background: var(--Unfilled-Color);
+    min-width: 140px;
 }
 
 #UnlockEndingTitle {
