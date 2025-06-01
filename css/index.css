@@ -222,6 +222,26 @@ button.locked {
     margin-top: 0.5vh;
     height: 30vh;
     background: var(--Text-Dark-RGB);
+    padding: 0.4vw;
+}
+
+p.perMission {
+    color: var(--Text-Dark-Color);
+    font-size: 1.6vh;
+    margin-block: 1vh;
+}
+
+span.missionRecord {
+    display: inline-block;
+    width: 2vw;
+    font-size: 2vh;
+    letter-spacing: 2px;
+    margin-left: 5px;
+}
+
+div.line {
+    height: 1px;
+    background: var(--Text-Dark-Color);
 }
 
 #gameDetail {
@@ -262,22 +282,43 @@ button.locked {
 }
 
 #gameProgressBar {
+    position: relative;
     height: 1vh;
     width: 10vw;
     background: var(--Unfilled-Color);
     min-width: 140px;
 }
 
-#UnlockEndingTitle {
+div.fillGameProgressBar {
+    height: 1vh;
+    width: 8vw;
+    background: var(--Primary-Color);
+    min-width: 140px;
+}
+
+#unlockEndingTitle {
     font-size: 1.1rem;
     color: var(--Text-Dark-Color);
     margin-top: 2vh;
     margin-bottom: 1vh;
 }
 
-div.UnlockEndingCircle {
+#endings {
+    display: flex;
+}
+
+div.lockEndingCircle {
     height: 1.8vh;
     width: 1.8vh;
     border-radius: 1vh;
     background: var(--Unfilled-Color);
+    margin-right: 0.6vw;
+}
+
+div.unlockEndingCircle {
+    height: 1.8vh;
+    width: 1.8vh;
+    border-radius: 1vh;
+    background: var(--Primary-Color);
+    margin-right: 0.6vw;
 }

@@ -75,10 +75,26 @@
             <!-- 任務列表 -->
             <div id="mission">
                 <div id="missionTitle">
-                    <p class="jersey-15">MISSION</p>
+                    <a href="mission.html">
+                        <p class="jersey-15">MISSION</p>
+                    </a>
                 </div>
                 <div id="missionDetail">
-
+                    <a href="mission.html">
+                        <p class="perMission lxgw-wenkai">通關[甜蜜偽像]所有結局<span class="missionRecord jersey-15">(0/5)</span>
+                        </p>
+                    </a>
+                    <div class="line"></div>
+                    <a href="mission.html">
+                        <p class="perMission lxgw-wenkai">通關[甜蜜偽像]所有結局<span class="missionRecord jersey-15">(0/5)</span>
+                        </p>
+                    </a>
+                    <div class="line"></div>
+                    <a href="mission.html">
+                        <p class="perMission lxgw-wenkai">通關[甜蜜偽像]所有結局<span class="missionRecord jersey-15">(0/5)</span>
+                        </p>
+                    </a>
+                    <div class="line"></div>
                 </div>
             </div>
         </div>
@@ -89,10 +105,16 @@
                 <p id="gameIntroContent" class="lxgw-wenkai"></p>
             </div>
             <div id="gameProgress">
-                <p id="gameProgressTitle" class="lxgw-wenkai">重置進度 70%</p>
-                <div id="gameProgressBar"></div>
-                <p id="UnlockEndingTitle" class="lxgw-wenkai">解鎖結局（2/3）</p>
-                <div class="UnlockEndingCircle"></div>
+                <p id="gameProgressTitle" class="lxgw-wenkai">重置進度 <span id="gameRecord">70</span>%</p>
+                <div id="gameProgressBar">
+                    <div class="fillGameProgressBar"></div>
+                </div>
+                <p id="unlockEndingTitle" class="lxgw-wenkai">解鎖結局（2/3）</p>
+                <div id="endings">
+                    <div class="unlockEndingCircle"></div>
+                    <div class="lockEndingCircle"></div>
+                    <div class="lockEndingCircle"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -101,7 +123,7 @@
 
         const loadingBar = document.getElementById('loadingBar')
         const totalBlocks = 22
-        const delayPerBlock = 300
+        const delayPerBlock = 3//300
 
         let isPageLoaded = false
         let isAnimationDone = false

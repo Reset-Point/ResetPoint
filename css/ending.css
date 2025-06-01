@@ -22,36 +22,18 @@
     height: 17vh;
     margin: auto;
     padding-top: 2vh;
-}
-
-#articleBtns div {
     display: flex;
-    justify-content: center;
-    padding-top: 2vh;
+    justify-content: right;
+    align-items: center;
 }
 
-button.choose {
-    height: 5vh;
-    width: 26vw;
-    border-radius: 2.5vh;
+#showResult {
+    height: 4vh;
+    width: 10vw;
+    border-radius: 2vh;
     margin-inline: 1.6vw;
     font-size: 1.8vh;
-    text-align: left;
-    background: var(--Text-Secondary-Color);
-    color: var(--Text-Dark-Color);
-    padding-inline: 1vw;
-}
-
-button.active {
-    background: var(--Text-Dark-Color);
+    background: var(--Primary-Color);
     color: var(--Text-Light-Color);
-    cursor: pointer;
-}
-
-button.active:hover {
-    background: var(--Primary-Color);
-}
-
-button.selected {
-    background: var(--Primary-Color);
+    padding-inline: 1vw;
 }

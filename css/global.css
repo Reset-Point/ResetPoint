@@ -47,6 +47,11 @@ button {
     outline: none;
 }
 
+a {
+    outline: none;
+    text-decoration: none;
+}
+
 body {
     margin: auto;
     height: 100vh;
@@ -99,4 +104,11 @@ button.tool {
 
 svg.icon {
     color: var(--Text-Dark-RGB);
+}
+
+img.projectName {
+    height: 4.6vh;
+    margin-top: 2vh;
+    object-fit: cover;
+    overflow: hidden;
 }

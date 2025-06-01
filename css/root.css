@@ -4,13 +4,6 @@
     padding-inline: 1vw;
 }
 
-img.projectName {
-    height: 4.6vh;
-    margin-top: 2vh;
-    object-fit: cover;
-    overflow: hidden;
-}
-
 #rootBody {
     height: 60vh;
     display: flex;
