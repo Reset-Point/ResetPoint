@@ -67,11 +67,14 @@ div.topTool {
 }
 
 div.leave {
+    width: 15vw;
     padding-top: 1vh;
 }
 
 div.toolGroup {
+    width: 15vw;
     display: flex;
+    justify-content: right;
     padding-top: 1vh;
 }
 

@@ -11,7 +11,7 @@
 
     <script src="js/tool.js"></script>
 
-    <title>Reset Point — Root</title>
+    <title>Reset Point — 甜蜜偽像</title>
 </head>
 
 <body>
@@ -28,6 +28,7 @@
                     </button>
                 </a>
             </div>
+            <img class="projectName" src="assets/images/name.png" alt="">
             <div class="toolGroup">
                 <button class="tool" id="resetpjBtn"></button>
                 <button class="tool" id="removeBtn"></button>
@@ -35,16 +36,78 @@
                 <button class="tool" id="settingBtn"></button>
             </div>
         </div>
-        <div id="rootBody"></div>
+        <div id="rootBody">
+            <button id="leftBtn" class="switch">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-6 icon">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5" />
+                </svg>
+            </button>
+            <div id="leaves" class="hide-scrollbar">
+                <p id="leaf-01" class="lxgw-wenkai leaf clicked">《？？？》</p>
+                <div class="line"></div>
+                <p id="leaf-02" class="lxgw-wenkai leaf visited">《？？？》</p>
+                <div class="line"></div>
+                <p id="leaf-03" class="lxgw-wenkai leaf closed">《？？？》</p>
+                <div class="line"></div>
+                <p id="leaf-04" class="lxgw-wenkai leaf clicked">《？？？》</p>
+                <div class="line"></div>
+                <p id="leaf-05" class="lxgw-wenkai leaf clicked">《？？？》</p>
+                <div class="line"></div>
+                <div class="endings">
+                    <div class="ending" style="margin-top: -2.7vh;">
+                        <div class="line"></div>
+                        <p id="leaf-06" class="lxgw-wenkai leaf clicked">《？？？》</p>
+                    </div>
+                    <div class="ending">
+                        <div class="line"></div>
+                        <p id="leaf-07" class="lxgw-wenkai leaf clicked">《？？？》</p>
+                    </div>
+                    <div class="ending" style="margin-bottom: -2.7vh;">
+                        <div class="line"></div>
+                        <p id="leaf-08" class="lxgw-wenkai leaf clicked">《？？？》</p>
+                    </div>
+                </div>
+            </div>
+            <button id="rightBtn" class="switch">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-6 icon">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                </svg>
+            </button>
+        </div>
         <div id="rootDetail" class="hide-scrollbar">
-            <p id="rootDetailTitle" class="lxgw-wenkai">節點資料</p>
-            <p id="rootIntroContent" class="lxgw-wenkai">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Ratione earum itaque similique nobis aliquid laborum numquam quam, veritatis optio, totam qui
-                dignissimos amet unde, quos rem dolor commodi accusamus. Nostrum?</p>
+            <div>
+                <p id="rootDetailTitle" class="lxgw-wenkai">節點資料</p>
+                <p id="rootIntroContent" class="lxgw-wenkai">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Ratione earum itaque similique nobis aliquid la<br>boru<br>m numquam quam, veritatis optio, totam
+                    qui
+                    dignissimos amet unde, quos rem dolor commodi <br>accusamus. Nostrum?</p>
+            </div>
+            <div id="enter">
+                <button id="enterBtn" class="active lxgw-wenkai">進入節點</button>
+            </div>
         </div>
     </div>
 
+    <script>
+        const leftBtn = document.getElementById('leftBtn')
+        const rightBtn = document.getElementById('rightBtn')
+        const leaves = document.getElementById('leaves')
 
+        // 每次移動的距離，可根據需求調整
+        const scrollAmount = 200
+
+        leftBtn.addEventListener('click', () => {
+            leaves.scrollBy({ left: -scrollAmount, behavior: 'smooth' })
+        })
+
+        rightBtn.addEventListener('click', () => {
+            leaves.scrollBy({ left: scrollAmount, behavior: 'smooth' })
+        })
+    </script>
 </body>
 
 </html>
