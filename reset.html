@@ -80,7 +80,7 @@
                 musicOn: true //音樂設置
             }
             localStorage.setItem('ResetPoint', JSON.stringify(userJson))
-
+            const user = JSON.parse(userJson);
             if (user.musicOn) {
                 parent.postMessage({ type: 'MUSIC', action: 'pause' }, '*');
             } else {
