@@ -298,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
             user.chapterChoices[user.currentChapter] = btn.id;
 
             //更新屬性
-            user.attachment += choiceData.aff;
+            user.affection += choiceData.aff;
             user.sanity += choiceData.san;
             user.security += choiceData.sec;
 
@@ -309,8 +309,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const nextChapter = getNextChapter(user.currentChapter);
             if (nextChapter === 'leaf-06') {
                 const scores = {
-                    aff: user.attachment,
-                    san: Math.abs(user.sanity),
+                    aff: user.affection,
+                    san: 100 - user.sanity,
                     sec: user.security,
                 };
                 const highestStat = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);

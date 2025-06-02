@@ -77,10 +77,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //初始狀態設定
     setStatus();
-    const defaultLeaf = document.getElementById(`leaf-0${user.resetChapter + 1}`);
+    const defaultChapter = user.resetChapter + 1 < 6 ? user.resetChapter + 1 : 1
+    const defaultLeaf = document.getElementById(`leaf-0${defaultChapter}`);
     setLeafStatus(defaultLeaf, 'clicked');
-    rootIntroContent.innerText = chapterDescribe[`leaf-0${user.resetChapter + 1}`].describe;
-    user.currentChapter = `leaf-0${user.resetChapter + 1}`;
+    rootIntroContent.innerText = chapterDescribe[`leaf-0${defaultChapter}`].describe;
+    user.currentChapter = `leaf-0${defaultChapter}`;
     localStorage.setItem('ResetPoint', JSON.stringify(user));
 
     //滾動控制

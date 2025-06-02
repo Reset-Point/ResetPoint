@@ -17,21 +17,42 @@
             window.location.href = 'index.html'
         }
 
+        function clamp(val, min, max) {
+            return Math.max(min, Math.min(max, val));
+        }
+
         function createUser() {
             const now = new Date()
             const minutes = now.getMinutes().toString().padStart(2, '0')
             const seconds = now.getSeconds().toString().padStart(2, '0')
+
+            //角色四維能力值隨機（範圍：5~20）
+            const strength = Math.floor(Math.random() * 16) + 5;
+            const intelligence = Math.floor(Math.random() * 16) + 5;
+            const agility = Math.floor(Math.random() * 16) + 5;
+            const fortune = Math.floor(Math.random() * 16) + 5;
+
+            //推導劇情屬性
+            let affection = Math.round(intelligence * 1.5 + fortune * 1.0);
+            let security = Math.round(strength * 1.2 + agility * 1.0);
+            let sanity = Math.round(intelligence * 1.0 + fortune * 1.2 - strength * 0.5);
+
+            //限制在安全範圍（讓死亡偶爾發生）
+            affection = clamp(affection, 30, 45);
+            security = clamp(security, 25, 45);
+            sanity = clamp(sanity, 30, 50);
+
             const userJson = {
                 name: `重置者${minutes}${seconds}`,
                 id: `#0513${minutes}${seconds}`,
-                experience: 20, //經驗值
-                strength: 0, //體力
-                intelligence: 0, //智力
-                agility: 0, //敏捷
-                fortune: 0, //運氣
-                sanity: 0, //san值
-                security: 0, //安全感
-                attachment: 0, //依附度
+                experience: 40, //經驗值
+                strength: strength, //體力
+                intelligence: intelligence, //智力
+                agility: agility, //敏捷
+                fortune: fortune, //運氣
+                sanity: sanity, //san值
+                security: security, //安全感
+                affection: affection, //依附度
                 completedChapter: 0, //總進度
                 completedEndings: 0, //總結局
                 resetTimes: 0, //重置次數

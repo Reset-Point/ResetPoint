@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     user.missions['mission04'].currentProgress = Math.min(user.completedChapter, user.missions['mission04'].maxProgress);
     user.missions['mission05'].currentProgress = user.completedEndings;
 
+    localStorage.setItem('ResetPoint', JSON.stringify(user));
+
     if (user.missions['mission01'].rewardClaimed) {
         const clearAllBtn = document.getElementById('clearAll');
         if (clearAllBtn) clearAllBtn.style.display = 'block';

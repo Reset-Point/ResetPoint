@@ -140,6 +140,45 @@ document.addEventListener('DOMContentLoaded', () => {
         11: { endings: 0, allEndings: 0 }
     }
 
+    //任務資料
+    const missionDetail = {
+        mission01: {
+            id: 'mission01',
+            describe: '完成[甜蜜偽像]所有任務',
+            currentProgress: user.missions['mission01'].currentProgress,
+            maxProgress: user.missions['mission01'].maxProgress,
+            rewardClaimed: user.missions['mission01'].rewardClaimed,
+        },
+        mission02: {
+            id: 'mission02',
+            describe: '完成一個節點',
+            currentProgress: user.missions['mission02'].currentProgress,
+            maxProgress: user.missions['mission02'].maxProgress,
+            rewardClaimed: user.missions['mission02'].rewardClaimed,
+        },
+        mission03: {
+            id: 'mission03',
+            describe: '完成三個節點',
+            currentProgress: user.missions['mission03'].currentProgress,
+            maxProgress: user.missions['mission03'].maxProgress,
+            rewardClaimed: user.missions['mission03'].rewardClaimed,
+        },
+        mission04: {
+            id: 'mission04',
+            describe: '完成五個節點',
+            currentProgress: user.missions['mission04'].currentProgress,
+            maxProgress: user.missions['mission04'].maxProgress,
+            rewardClaimed: user.missions['mission04'].rewardClaimed,
+        },
+        mission05: {
+            id: 'mission05',
+            describe: '通關[甜蜜偽像]所有結局',
+            currentProgress: user.missions['mission05'].currentProgress,
+            maxProgress: user.missions['mission05'].maxProgress,
+            rewardClaimed: user.missions['mission05'].rewardClaimed,
+        }
+    };
+
     const maxExp = 200;
     const maxProgress = 8;
 
@@ -152,10 +191,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     updateProgressBar('profileExpBarFill', user.experience, maxExp);
-    updateProgressBar('strength', user.strength);
-    updateProgressBar('intelligence', user.intelligence);
-    updateProgressBar('agility', user.agility);
-    updateProgressBar('fortune', user.fortune);
+    updateProgressBar('strength', user.strength * 5);
+    updateProgressBar('intelligence', user.intelligence * 5);
+    updateProgressBar('agility', user.agility * 5);
+    updateProgressBar('fortune', user.fortune * 5);
 
     const carousel = document.getElementById('carousel');
     const cardCount = 12;
@@ -247,4 +286,40 @@ document.addEventListener('DOMContentLoaded', () => {
     //個人資訊
     document.getElementById('profileName').innerText = user.name || '#未註冊重置者';
     document.getElementById('profileId').innerText = user.id || '#????????';
+
+    //任務資料
+    const missionDetailContainer = document.getElementById('missionDetail');
+    missionDetailContainer.innerHTML = ''; // 清空原始內容
+
+    //更新任務進度
+    user.missions['mission01'].currentProgress = [2, 3, 4, 5].reduce((count, idx) => {
+        return count + (user.missions[`mission0${idx}`].rewardClaimed === true ? 1 : 0);
+    }, 0);
+    user.missions['mission02'].currentProgress = Math.min(user.completedChapter, user.missions['mission02'].maxProgress);
+    user.missions['mission03'].currentProgress = Math.min(user.completedChapter, user.missions['mission03'].maxProgress);
+    user.missions['mission04'].currentProgress = Math.min(user.completedChapter, user.missions['mission04'].maxProgress);
+    user.missions['mission05'].currentProgress = user.completedEndings;
+
+    localStorage.setItem('ResetPoint', JSON.stringify(user));
+
+    const missionList = Object.values(missionDetail);
+    const unclaimedMissions = missionList.filter(m => !m.rewardClaimed).slice(0, 3);
+
+    unclaimedMissions.forEach(mission => {
+        const link = document.createElement('a');
+        link.href = 'mission.html';
+
+        const p = document.createElement('p');
+        p.className = 'perMission lxgw-wenkai';
+        p.innerHTML = `${mission.describe}<span class="missionRecord jersey-15">(${mission.currentProgress}/${mission.maxProgress})</span>`;
+
+        link.appendChild(p);
+        missionDetailContainer.appendChild(link);
+
+        // 每筆後都加分隔線
+        const line = document.createElement('div');
+        line.className = 'line';
+        missionDetailContainer.appendChild(line);
+    });
+
 });
