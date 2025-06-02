@@ -14,12 +14,17 @@
     <script>
         const user = localStorage.getItem('ResetPoint')
         if (user) {
-            window.location.href = 'index.html'
+            window.location.href = 'home.html'
         }
 
         function clamp(val, min, max) {
             return Math.max(min, Math.min(max, val));
         }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const resetBtn = document.getElementById('resetBtn')
+            resetBtn.addEventListener('click', createUser)
+        });
 
         function createUser() {
             const now = new Date()
@@ -87,7 +92,7 @@
                 parent.postMessage({ type: 'MUSIC', action: 'pause' }, '*');
             }
 
-            window.location.href = 'index.html'
+            window.location.href = 'home.html'
         }
     </script>
 </head>
@@ -95,7 +100,7 @@
 <body>
     <div class="content">
         <img src="assets/images/logo.png" alt="">
-        <button id="resetBtn" class="jersey-15" type="button" onclick="createUser()">RESET</button>
+        <button id="resetBtn" class="jersey-15" type="button">RESET</button>
     </div>
 </body>
 

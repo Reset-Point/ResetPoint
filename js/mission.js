@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const userJson = localStorage.getItem('ResetPoint');
     if (!userJson) {
         console.warn('沒有找到 ResetPoint 資料');
-        window.location.href = 'index.html'
+        window.location.href = 'home.html'
     }
     const user = JSON.parse(userJson);
     console.log(user);

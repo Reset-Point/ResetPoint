@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const userJson = localStorage.getItem('ResetPoint');
     if (!userJson) {
         alert("使用者資料遺失，請重新開始遊戲。");
-        window.location.href = 'index.html';
+        window.location.href = 'home.html';
         return;
     }
     const user = JSON.parse(userJson);
