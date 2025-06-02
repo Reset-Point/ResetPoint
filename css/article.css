@@ -54,4 +54,9 @@ button.active:hover {
 
 button.selected {
     background: var(--Primary-Color);
+    cursor: default;
+}
+
+span.sentence {
+    color: var(--Text-Secondary-Color);
 }

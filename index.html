@@ -107,20 +107,19 @@
             <div id="gameProgress">
                 <p id="gameProgressTitle" class="lxgw-wenkai">重置進度 <span id="gameRecord">70</span>%</p>
                 <div id="gameProgressBar">
-                    <div class="fillGameProgressBar"></div>
+                    <div id="fillGameProgressBar" class="fillGameProgressBar"></div>
                 </div>
-                <p id="unlockEndingTitle" class="lxgw-wenkai">解鎖結局（2/3）</p>
+                <p id="unlockEndingTitle" class="lxgw-wenkai">解鎖結局（<span id="endingRecord">2/3</span>）</p>
                 <div id="endings">
-                    <div class="unlockEndingCircle"></div>
+                    <!--<div class="unlockEndingCircle"></div>
                     <div class="lockEndingCircle"></div>
-                    <div class="lockEndingCircle"></div>
+                    <div class="lockEndingCircle"></div>-->
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-
         const loadingBar = document.getElementById('loadingBar')
         const totalBlocks = 22
         const delayPerBlock = 3//300
@@ -156,7 +155,7 @@
 
         function tryToEnterLobby() {
             if (isPageLoaded && isAnimationDone) {
-                const userJson = localStorage.getItem('user')
+                const userJson = localStorage.getItem('ResetPoint')
 
                 if (!userJson) {
                     window.location.href = 'reset.html'
@@ -168,7 +167,7 @@
             }
         }
 
-        const userJson = localStorage.getItem('user')
+        const userJson = localStorage.getItem('ResetPoint')
         const user = JSON.parse(userJson)
 
         //遊戲名稱
@@ -267,6 +266,51 @@
             風險：中度認知紊亂`
         ]
 
+        const gameRecord = [
+            `${(user.completedChapter + user.completedEndings) / 8} `,
+            '? ',
+            '? ',
+            '? ',
+            '? ',
+            '? ',
+            '? ',
+            '? ',
+            '? ',
+            '? ',
+            '? ',
+            '? ',
+        ]
+
+        const endingRecord = [
+            `${user.completedEndings} / 3`,
+            '? / ?',
+            '? / ?',
+            '? / ?',
+            '? / ?',
+            '? / ?',
+            '? / ?',
+            '? / ?',
+            '? / ?',
+            '? / ?',
+            '? / ?',
+            '? / ?',
+        ]
+
+        const endings = {
+            0: { endings: user.completedEndings, allEndings: 3 },
+            1: { endings: 0, allEndings: 0 },
+            2: { endings: 0, allEndings: 0 },
+            3: { endings: 0, allEndings: 0 },
+            4: { endings: 0, allEndings: 0 },
+            5: { endings: 0, allEndings: 0 },
+            6: { endings: 0, allEndings: 0 },
+            7: { endings: 0, allEndings: 0 },
+            8: { endings: 0, allEndings: 0 },
+            9: { endings: 0, allEndings: 0 },
+            10: { endings: 0, allEndings: 0 },
+            11: { endings: 0, allEndings: 0 }
+        }
+
         document.getElementById('profileExpBarFill').style.width = `${user.experience / 25}%`//經驗值比例
         document.getElementById('strength').style.width = `${user.strength}%`
         document.getElementById('intelligence').style.width = `${user.intelligence}%`
@@ -313,6 +357,25 @@
             document.getElementById('gameName').innerText = gameNames[roundedIndex]
             const enterBtn = document.getElementById('enterBtn')
             document.getElementById('gameIntroContent').innerHTML = describes[roundedIndex]
+            document.getElementById('gameRecord').innerText = gameRecord[roundedIndex]
+            document.getElementById('fillGameProgressBar').style.width = `${gameRecord[roundedIndex] / 8 * 100}%`
+            document.getElementById('endingRecord').innerText = endingRecord[roundedIndex]
+
+            const container = document.getElementById('endings');
+            container.innerHTML = ''
+            console.log(roundedIndex)
+            const unlocked = endings[roundedIndex].endings;
+            const total = endings[roundedIndex].allEndings;
+
+            for (let i = 0; i < total; i++) {
+                const div = document.createElement('div');
+                if (i < unlocked) {
+                    div.className = 'unlockEndingCircle';
+                } else {
+                    div.className = 'lockEndingCircle';
+                }
+                container.appendChild(div);
+            }
 
             if (gameNames[roundedIndex] == '甜蜜偽像') {
                 enterBtn.innerText = 'ENTER'
@@ -322,16 +385,16 @@
                 enterBtn.innerText = 'LOCKED'
                 enterBtn.className = 'locked jersey-15'
             }
-
-            enterBtn.addEventListener('click', (e) => {
-                if (gameNames[roundedIndex] == '甜蜜偽像') {
-                    window.location.href = 'root.html'
-                }
-            })
         }
 
         //初次啟動就放大卡牌
         updateActiveCard()
+
+        enterBtn.addEventListener('click', (e) => {
+            if (document.getElementById('gameName').innerText == '甜蜜偽像') {
+                window.location.href = 'root.html'
+            }
+        })
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight') angle -= step
@@ -339,6 +402,9 @@
             carousel.style.transform = `rotateY(${angle}deg)`
             updateActiveCard()
         })
+
+        document.getElementById('profileName').innerText = user.name
+        document.getElementById('profileId').innerText = user.id
 
     </script>
 </body>

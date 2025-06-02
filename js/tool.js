@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const removeBtn = document.getElementById("removeBtn")
     const resetpjBtn = document.getElementById("resetpjBtn")
 
-    const userJson = localStorage.getItem('user')
+    const userJson = localStorage.getItem('ResetPoint')
     const user = JSON.parse(userJson)
 
     settingBtn.innerHTML =
@@ -57,13 +57,26 @@ document.addEventListener("DOMContentLoaded", function () {
                 </svg>`
             user.musicOn = true
         }
-        localStorage.setItem('user', JSON.stringify(user))
+        localStorage.setItem('ResetPoint', JSON.stringify(user))
     })
     removeBtn.addEventListener("click", () => {
         if (window.confirm("即將清除重置者資料")) {
-            localStorage.removeItem('user')
+            localStorage.removeItem('ResetPoint')
             window.location.href = 'reset.html'
         }
     })
-    resetpjBtn.addEventListener("click", () => alert("按了 btn4"))
+    resetpjBtn.addEventListener("click", () => {
+        if (window.confirm("即將重置副本資料")) {
+            for (const key in user.chapterChoices) {
+                if (user.chapterChoices.hasOwnProperty(key)) {
+                    user.chapterChoices[key] = 0
+                }
+            }
+            user.resetChapter = 1
+            user.currentChapter = 0
+            user.resetTimes += 1
+            localStorage.setItem('ResetPoint', JSON.stringify(user))
+            console.log(user)
+        }
+    })
 })

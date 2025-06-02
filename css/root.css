@@ -31,21 +31,24 @@ p.leaf {
     padding-inline: 1vw;
     padding-block: 1.6vh;
     border-radius: 5px;
-    color: var(--Text-Light-Color);
-    cursor: pointer;
 }
 
 p.clicked {
     background: var(--Primary-Color);
+    color: var(--Text-Light-Color);
+    cursor: pointer;
 }
 
 p.visited {
     background: var(--Text-Dark-Color);
+    color: var(--Text-Light-Color);
+    cursor: pointer;
 }
 
 p.closed {
     background: var(--Text-Dark-RGB);
     color: var(--Text-Dark-Color);
+    cursor: default;
 }
 
 div.line {
@@ -66,7 +69,7 @@ div.ending {
 }
 
 #rootDetail {
-    width: 70vw;
+    width: 60vw;
     height: 17vh;
     margin: auto;
     border-radius: 3vh;
@@ -110,4 +113,10 @@ button.active {
     background: var(--Primary-Color);
     color: var(--Text-Light-Color);
     cursor: pointer;
+}
+
+button.unactive {
+    background: var(--Text-Dark-RGB);
+    color: var(--Text-Dark-Color);
+    cursor: default;
 }

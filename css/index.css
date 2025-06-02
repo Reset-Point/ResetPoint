@@ -245,7 +245,7 @@ div.line {
 }
 
 #gameDetail {
-    width: 70vw;
+    width: 60vw;
     height: 17vh;
     margin: auto;
     border-radius: 3vh;
@@ -293,7 +293,6 @@ div.fillGameProgressBar {
     height: 1vh;
     width: 8vw;
     background: var(--Primary-Color);
-    min-width: 140px;
 }
 
 #unlockEndingTitle {

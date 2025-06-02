@@ -12,7 +12,7 @@
     <title>Reset Point — Reset</title>
 
     <script>
-        const user = localStorage.getItem('user')
+        const user = localStorage.getItem('ResetPoint')
         if (user) {
             window.location.href = 'index.html'
         }
@@ -32,17 +32,17 @@
                 sanity: 0, //san值
                 security: 0, //安全感
                 attachment: 0, //依附度
-                completedChapters: 0, //總進度
+                completedChapter: 0, //總進度
                 completedEndings: 0, //總結局
                 resetTimes: 0, //重置次數
-                resetChapters: 0, //目前章節 → 影響深淺灰色
-                currentChapter: 0, //打開章節
+                resetChapter: 0, //目前章節 → 影響深淺灰色
+                currentChapter: 0,//"leaf-01", //打開章節
                 chapterChoices: {
-                    1: 0,
-                    2: 0,
-                    3: 0,
-                    4: 0,
-                    5: 0
+                    'leaf-01': 0,
+                    'leaf-02': 0,
+                    'leaf-03': 0,
+                    'leaf-04': 0,
+                    'leaf-05': 0
                 }, //章節選擇
                 endings: {
                     1: false,
@@ -58,7 +58,7 @@
                 }, //任務統計
                 musicOn: true //音樂設置
             }
-            localStorage.setItem('user', JSON.stringify(userJson))
+            localStorage.setItem('ResetPoint', JSON.stringify(userJson))
 
             window.location.href = 'index.html'
         }
