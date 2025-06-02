@@ -2,12 +2,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const userJson = localStorage.getItem('ResetPoint');
     if (!userJson) {
         console.warn('沒有找到 ResetPoint 資料');
-        return;
+        window.location.href = 'index.html'
     }
     const user = JSON.parse(userJson);
     console.log(user);
 
-    // 更新任務進度
+    //更新任務進度
     user.missions['mission01'].currentProgress = [2, 3, 4, 5].reduce((count, idx) => {
         return count + (user.missions[`mission0${idx}`].rewardClaimed === true ? 1 : 0);
     }, 0);
@@ -72,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const container = document.createElement('div');
         container.id = mission.id;
 
-        // 計算填充條寬度，避免 maxProgress 為 0
         const fillWidth = data.maxProgress > 0 ? (data.currentProgress / data.maxProgress) * 100 : 0;
 
         container.innerHTML = `
@@ -95,15 +94,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const missionBar = container.querySelector('.missionBar');
         const clearBtn = container.querySelector('button.clear');
-        // const missionRecord = container.querySelector('.missionRecord');
 
         if (data.currentProgress === data.maxProgress && data.rewardClaimed === false) {
             missionBar.style.display = 'none';
-            // missionRecord.style.display = 'none';
             clearBtn.style.display = 'block';
         } else {
             missionBar.style.display = 'block';
-            // missionRecord.style.display = 'block';
             clearBtn.style.display = 'none';
         }
 

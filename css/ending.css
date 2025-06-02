@@ -29,11 +29,24 @@
 
 #showResult {
     height: 4vh;
-    width: 10vw;
+    width: 20vw;
     border-radius: 2vh;
     margin-inline: 1.6vw;
     font-size: 1.8vh;
+    padding-inline: 1vw;
+}
+
+button.unactive {
+    background: var(--Text-Dark-RGB);
+    color: var(--Text-Dark-Color);
+}
+
+button.active {
     background: var(--Primary-Color);
     color: var(--Text-Light-Color);
-    padding-inline: 1vw;
+    cursor: pointer;
+}
+
+span.sentence {
+    color: var(--Text-Secondary-Color);
 }
