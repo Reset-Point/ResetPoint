@@ -31,6 +31,7 @@ p.leaf {
     padding-inline: 1vw;
     padding-block: 1.6vh;
     border-radius: 5px;
+    white-space: nowrap;
 }
 
 p.clicked {
@@ -52,7 +53,8 @@ p.closed {
 }
 
 div.line {
-    min-width: 4vw;
+    width: 4vw;
+    min-width: 60px;
     height: 1px;
     background: var(--Text-Dark-Color);
 }

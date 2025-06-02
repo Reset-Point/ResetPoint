@@ -311,7 +311,7 @@
             11: { endings: 0, allEndings: 0 }
         }
 
-        document.getElementById('profileExpBarFill').style.width = `${user.experience / 25}%`//經驗值比例
+        document.getElementById('profileExpBarFill').style.width = `${user.experience / 200 * 100}%`//經驗值比例
         document.getElementById('strength').style.width = `${user.strength}%`
         document.getElementById('intelligence').style.width = `${user.intelligence}%`
         document.getElementById('agility').style.width = `${user.agility}%`
@@ -357,8 +357,8 @@
             document.getElementById('gameName').innerText = gameNames[roundedIndex]
             const enterBtn = document.getElementById('enterBtn')
             document.getElementById('gameIntroContent').innerHTML = describes[roundedIndex]
-            document.getElementById('gameRecord').innerText = gameRecord[roundedIndex]
-            document.getElementById('fillGameProgressBar').style.width = `${gameRecord[roundedIndex] / 8 * 100}%`
+            document.getElementById('gameRecord').innerText = gameRecord[roundedIndex] * 100
+            document.getElementById('fillGameProgressBar').style.width = `${(user.completedChapter + user.completedEndings) / 8 * 100}%`
             document.getElementById('endingRecord').innerText = endingRecord[roundedIndex]
 
             const container = document.getElementById('endings');

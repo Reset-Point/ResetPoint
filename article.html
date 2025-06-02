@@ -254,73 +254,6 @@
             }
         }
 
-        /*const userJson = localStorage.getItem('ResetPoint')
-        const user = JSON.parse(userJson)
-
-        const title = document.getElementById('title')
-        title.innerText = `甜蜜偽像 — ${chapterDetail[user.currentChapter].title}`
-
-        const articleContent = document.getElementById('articleContent')
-        articleContent.innerHTML = chapterDetail[user.currentChapter].content
-
-        const select01 = document.getElementById('select01')
-        select01.textContent = chapterDetail[user.currentChapter].select01.content
-
-        const select02 = document.getElementById('select02')
-        select02.textContent = chapterDetail[user.currentChapter].select02.content
-
-        const select03 = document.getElementById('select03')
-        select03.textContent = chapterDetail[user.currentChapter].select03.content
-
-        const select04 = document.getElementById('select04')
-        select04.textContent = chapterDetail[user.currentChapter].select04.content
-
-        function isScrolledToBottom() {
-            return articleContent.scrollHeight - articleContent.scrollTop === articleContent.clientHeight;
-        }
-
-        const buttons = [
-            document.getElementById('select01'),
-            document.getElementById('select02'),
-            document.getElementById('select03'),
-            document.getElementById('select04'),
-        ];
-
-        function updateButtons() {
-            const hasChapterChoices = user.chapterChoices[user.currentChapter] && Object.keys(user.chapterChoices).length > 0;
-
-            console.log(hasChapterChoices)
-
-            if (hasChapterChoices) {
-                buttons.forEach((btn, index) => {
-                    btn.disabled = true;
-                    const chapterIndex = index + 1;
-                    if (user.chapterChoices[chapterIndex] === 0) {
-                        btn.className = 'choose active selected lxgw-wenkai';
-                    } else {
-                        btn.className = 'choose lxgw-wenkai';
-                    }
-                });
-            } else {
-                const scrolledBottom = isScrolledToBottom();
-                if (scrolledBottom) {
-                    buttons.forEach(btn => {
-                        btn.disabled = false;
-                        btn.className = 'choose active lxgw-wenkai';
-                    });
-                } else {
-                    buttons.forEach(btn => {
-                        btn.disabled = true;
-                        btn.className = 'choose lxgw-wenkai';
-                    });
-                }
-            }
-        }
-
-        document.getElementById('articleContent').addEventListener('scroll', updateButtons);
-
-        updateButtons()*/
-
         // 取得用户数据
         const userJson = localStorage.getItem('ResetPoint');
         const user = JSON.parse(userJson);
@@ -390,7 +323,7 @@
             if (!match) return current;
             const prefix = match[1]; // 'leaf'
             let num = parseInt(match[2], 10);
-            if (num >= 5) return current;  // 最大章节是05，不跳了
+            /*if (num >= 5) return current;*/  // 最大章节是05，不跳了
             if (user.completedChapter < num) user.completedChapter = num
             num += 1;
             return `${prefix}-${num.toString().padStart(2, '0')}`;
@@ -406,21 +339,68 @@
                 user.security += chapterDetail[user.currentChapter][`select0${idx + 1}`].sec
 
                 const nextChapter = getNextChapter(user.currentChapter);
-                user.currentChapter = nextChapter;
                 user.resetChapter += 1
 
-                // 保存到 localStorage，保证刷新还能拿到
-                localStorage.setItem('ResetPoint', JSON.stringify(user));
+                console.log(nextChapter)
 
-                // 更新按钮状态（禁用已选按钮等）
-                updateButtons();
+                if (nextChapter == 'leaf-06') {
+                    const sanityScore = Math.abs(user.sanity);
+                    const securityScore = user.security;
+                    const attachmentScore = user.attachment;
 
-                window.location.href = 'article.html'
-                // 你还可以这里触发下一步，比如跳到下一章节，或者更新页面内容
-                // 例如：
-                // user.currentChapter += 1;
-                // localStorage.setItem('ResetPoint', JSON.stringify(user));
-                // location.reload(); // 或重新渲染下一章
+                    const scores = {
+                        'aff': attachmentScore,
+                        'san': sanityScore,
+                        'sec': securityScore
+                    };
+
+                    const highestStat = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+
+                    console.log(highestStat)
+
+                    if (highestStat == 'aff') {
+                        if (user.endings[1] == false) {
+                            user.completedEndings += 1
+                            user.endings[1] = true
+                        }
+                        user.currentChapter = 'leaf-06'
+                    }
+                    if (highestStat == 'san') {
+                        if (user.endings[2] === false) {
+                            user.completedEndings += 1;
+                            user.endings[2] = true;
+                        }
+                        user.currentChapter = 'leaf-07';
+                    }
+
+                    if (highestStat == 'sec') {
+                        if (user.endings[3] === false) {
+                            user.completedEndings += 1;
+                            user.endings[3] = true;
+                        }
+                        user.currentChapter = 'leaf-08';
+                    }
+
+                    localStorage.setItem('ResetPoint', JSON.stringify(user));
+
+                    console.log(highestStat)
+                    console.log(scores)
+
+                    window.location.href = 'ending.html'
+                }
+                else {
+
+                    user.currentChapter = nextChapter;
+
+                    user.experience = 40 + user.completedChapter * 10
+
+                    localStorage.setItem('ResetPoint', JSON.stringify(user));
+
+                    // 更新按钮状态（禁用已选按钮等）
+                    updateButtons();
+
+                    window.location.href = 'article.html'
+                }
             });
         });
 

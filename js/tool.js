@@ -72,11 +72,20 @@ document.addEventListener("DOMContentLoaded", function () {
                     user.chapterChoices[key] = 0
                 }
             }
-            user.resetChapter = 1
+            user.resetChapter = 0
             user.currentChapter = 0
             user.resetTimes += 1
+            user.attachment = 0
+            user.sanity = 0
+            user.security = 0
             localStorage.setItem('ResetPoint', JSON.stringify(user))
             console.log(user)
+
+            const currentPage = window.location.pathname;
+
+            if (currentPage.includes('article.html') || currentPage.includes('ending.html') || currentPage.includes('result.html') || currentPage.includes('root.html')) {
+                window.location.href = 'root.html';
+            }
         }
     })
 })

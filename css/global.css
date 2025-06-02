@@ -45,6 +45,7 @@ button {
     background: none;
     border: none;
     outline: none;
+    white-space: nowrap;
 }
 
 a {

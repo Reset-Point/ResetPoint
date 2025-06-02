@@ -140,7 +140,7 @@
 
                 if (i <= user.completedChapter + 1) {
                     leaf.innerText = `《${chapterTitles[i - 1]}》`;
-                    if (user.chapterChoices[`leaf-0${i}`] != 0) {
+                    if (i <= user.resetChapter) {
                         leaf.classList = 'lxgw-wenkai leaf visited'
                     }
                     else {
@@ -157,6 +157,7 @@
 
                 if (user.endings[i]) {
                     leaf.innerText = `《${endingTitles[i - 1]}》`;
+                    leaf.classList = 'lxgw-wenkai leaf visited'
                 } else {
                     leaf.innerText = '《？？？》';
                     leaf.classList = 'lxgw-wenkai leaf closed'
@@ -186,9 +187,15 @@
             console.log(getLeafNumber(leaf.id))
 
             leaf.addEventListener('click', () => {
-                if (leafNum >= user.resetChapter + 1) {
+                enterBtn.disabled = false;
+                enterBtn.classList = 'active lxgw-wenkai'
+                if (leaf.innerText == '《？？？》') {
+                    return
+                }
+                if (leafNum > user.resetChapter + 1 && leafNum <= 5) {
+
                     enterBtn.disabled = true;
-                    return;
+                    enterBtn.classList = 'unactive lxgw-wenkai'
                 }
 
                 allLeaves.forEach(l => {
@@ -205,7 +212,12 @@
         });
 
         enterBtn.addEventListener('click', () => {
-            window.location.href = 'article.html'
+            if (getLeafNumber(user.currentChapter) <= 5) {
+                window.location.href = 'article.html'
+            }
+            else {
+                window.location.href = 'ending.html'
+            }
         })
 
     </script>
