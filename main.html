@@ -44,6 +44,8 @@
             // 避免錯誤格式
             if (!event.data || event.data.type !== 'MUSIC') return;
 
+            console.log(event.data)
+
             const bgmIframe = document.getElementById('bgmFrame');
             if (bgmIframe && bgmIframe.contentWindow) {
                 bgmIframe.contentWindow.postMessage(event.data.action, '*');

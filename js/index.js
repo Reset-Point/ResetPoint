@@ -8,6 +8,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const user = JSON.parse(userJson);
     console.log(user);
 
+    //更新任務進度
+    user.missions['mission01'].currentProgress = [2, 3, 4, 5].reduce((count, idx) => {
+        return count + (user.missions[`mission0${idx}`].rewardClaimed === true ? 1 : 0);
+    }, 0);
+    user.missions['mission02'].currentProgress = Math.min(user.completedChapter, user.missions['mission02'].maxProgress);
+    user.missions['mission03'].currentProgress = Math.min(user.completedChapter, user.missions['mission03'].maxProgress);
+    user.missions['mission04'].currentProgress = Math.min(user.completedChapter, user.missions['mission04'].maxProgress);
+    user.missions['mission05'].currentProgress = user.completedEndings;
+
+    localStorage.setItem('ResetPoint', JSON.stringify(user));
+
     const mission = user.missions['mission01'].currentProgress + (user.missions['mission01'].rewardClaimed ? 1 : 0)
     user.experience = 40 + user.completedChapter * 10 + user.completedEndings * 20 + mission * 10;
     localStorage.setItem('ResetPoint', JSON.stringify(user));
@@ -290,17 +301,6 @@ document.addEventListener('DOMContentLoaded', () => {
     //任務資料
     const missionDetailContainer = document.getElementById('missionDetail');
     missionDetailContainer.innerHTML = ''; // 清空原始內容
-
-    //更新任務進度
-    user.missions['mission01'].currentProgress = [2, 3, 4, 5].reduce((count, idx) => {
-        return count + (user.missions[`mission0${idx}`].rewardClaimed === true ? 1 : 0);
-    }, 0);
-    user.missions['mission02'].currentProgress = Math.min(user.completedChapter, user.missions['mission02'].maxProgress);
-    user.missions['mission03'].currentProgress = Math.min(user.completedChapter, user.missions['mission03'].maxProgress);
-    user.missions['mission04'].currentProgress = Math.min(user.completedChapter, user.missions['mission04'].maxProgress);
-    user.missions['mission05'].currentProgress = user.completedEndings;
-
-    localStorage.setItem('ResetPoint', JSON.stringify(user));
 
     const missionList = Object.values(missionDetail);
     const unclaimedMissions = missionList.filter(m => !m.rewardClaimed).slice(0, 3);

@@ -25,10 +25,11 @@
 
         //接收來自父頁的音量或播放狀態更新
         window.addEventListener('message', (event) => {
+            console.log(event.data)
             if (event.data === 'play') {
-                document.getElementById('bgm').play();
+                document.getElementById('bgmPlayer').play();
             } else if (event.data === 'pause') {
-                document.getElementById('bgm').pause();
+                document.getElementById('bgmPlayer').pause();
             }
         });
     </script>
