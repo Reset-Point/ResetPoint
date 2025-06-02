@@ -79,9 +79,17 @@ document.addEventListener("DOMContentLoaded", function () {
             user.resetChapter = 0
             user.currentChapter = 0
             user.resetTimes += 1
-            user.attachment = 0
-            user.sanity = 0
-            user.security = 0
+
+            //推導劇情屬性
+            let affection = Math.round(user.intelligence * 1.5 + user.fortune * 1.0);
+            let security = Math.round(user.strength * 1.2 + user.agility * 1.0);
+            let sanity = Math.round(user.intelligence * 1.0 + user.fortune * 1.2 - user.strength * 0.5);
+
+            //限制在安全範圍（讓死亡偶爾發生）
+            user.affection = clamp(affection, 30, 45);
+            user.security = clamp(security, 25, 45);
+            user.sanity = clamp(sanity, 30, 50);
+
             localStorage.setItem('ResetPoint', JSON.stringify(user))
             console.log(user)
 
