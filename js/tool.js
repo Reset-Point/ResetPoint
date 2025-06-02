@@ -93,10 +93,16 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem('ResetPoint', JSON.stringify(user))
             console.log(user)
 
-            const currentPage = window.location.pathname;
+            //const currentPage = window.location.pathname;
 
-            if (currentPage.includes('article.html') || currentPage.includes('ending.html') || currentPage.includes('result.html') || currentPage.includes('root.html')) {
-                window.location.href = 'root.html';
+            const iframe = document.getElementById('contentFrame');
+            const currentPage = iframe.src;
+
+            if (currentPage.includes('article.html') ||
+                currentPage.includes('ending.html') ||
+                currentPage.includes('result.html') ||
+                currentPage.includes('root.html')) {
+                iframe.src = 'root.html';  // 刷新 or 跳轉
             }
         }
     })
