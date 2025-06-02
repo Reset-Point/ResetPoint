@@ -235,6 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //工具函式：判斷是否已滾動到底部
     function isScrolledToBottom() {
+        console.log(articleContent.scrollHeight - articleContent.scrollTop <= articleContent.clientHeight + 1)
         return articleContent.scrollHeight - articleContent.scrollTop <= articleContent.clientHeight + 1;
     }
 
@@ -267,6 +268,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //初始化按鈕狀態
     updateButtons();
+    if (!hasUnlockedChoices && isScrolledToBottom()) {
+        hasUnlockedChoices = true;
+        updateButtons();
+    }
 
     //監聽滾動事件
     articleContent.addEventListener('scroll', () => {
