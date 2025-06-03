@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
             user.resetTimes += 1
 
             //推導劇情屬性
-            let affection = Math.round(user.intelligence * 2.0 + user.fortune * 1.3);
+            let affection = Math.round(user.intelligence * 2.0 + user.fortune * 1.5);
             let security = Math.round(user.strength * 1.7 + user.agility * 1.5);
             let sanity = Math.round(user.intelligence * 1.0 + user.fortune * 1.2 + user.strength * 1.5 + user.agility * 0.7);
 
