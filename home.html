@@ -140,7 +140,7 @@
                 const userJson = localStorage.getItem('ResetPoint')
 
                 if (!userJson) {
-                    window.location.href = 'reset.html'
+                    window.parent.document.getElementById('contentFrame').src = 'reset.html'
                     return
                 }
 

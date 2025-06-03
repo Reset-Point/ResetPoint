@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const userJson = localStorage.getItem('ResetPoint');
     if (!userJson) {
         alert("使用者資料遺失，請重新開始遊戲。");
-        window.location.href = 'home.html';
+        window.parent.document.getElementById('contentFrame').src = 'home.html';
     }
     const user = JSON.parse(userJson);
 
@@ -334,12 +334,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 user.currentChapter = endingMap[highestStat];
                 localStorage.setItem('ResetPoint', JSON.stringify(user));
-                window.location.href = 'ending.html';
+                window.parent.document.getElementById('contentFrame').src = 'ending.html';
             } else {
                 //正常進入下一章
                 user.currentChapter = nextChapter;
                 localStorage.setItem('ResetPoint', JSON.stringify(user));
-                window.location.href = 'article.html';
+                window.parent.document.getElementById('contentFrame').src = 'article.html';
             }
         });
     });

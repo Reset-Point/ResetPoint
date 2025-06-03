@@ -2,13 +2,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const userJson = localStorage.getItem('ResetPoint');
     if (!userJson) {
         console.warn('沒有找到 ResetPoint 資料');
-        window.location.href = 'home.html'
+        window.parent.document.getElementById('contentFrame').src = 'home.html'
     }
     const user = JSON.parse(userJson);
     console.log(user);
 
     if (user.currentChapter != 'leaf-06' && user.currentChapter != 'leaf-07' && user.currentChapter != 'leaf-08') {
-        window.location.href = 'root.html'
+        window.parent.document.getElementById('contentFrame').src = 'root.html'
     }
 
     const endingDetail = {
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     articleContent.innerHTML = endingDetail[user.currentChapter].content
 
     document.getElementById('showResult').addEventListener('click', (e) => {
-        window.location.href = 'result.html'
+        window.parent.document.getElementById('contentFrame').src = 'result.html'
     })
 
     const article = document.getElementById('articleContent');

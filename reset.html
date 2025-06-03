@@ -14,7 +14,7 @@
     <script>
         const user = localStorage.getItem('ResetPoint')
         if (user) {
-            window.location.href = 'home.html'
+            window.parent.document.getElementById('contentFrame').src = 'home.html'
         }
 
         function clamp(val, min, max) {
@@ -92,7 +92,7 @@
                 parent.postMessage({ type: 'MUSIC', action: 'pause' }, '*');
             }
 
-            window.location.href = 'home.html'
+            window.parent.document.getElementById('contentFrame').src = 'home.html'
         }
     </script>
 </head>

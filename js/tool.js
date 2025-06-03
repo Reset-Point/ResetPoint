@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </svg>`
 
     settingBtn.addEventListener("click", () => {
-        window.location.href = 'https://reset-point.github.io/ResetPointProposal/'
+        window.open('https://reset-point.github.io/ResetPointProposal/', '_blank');
     })
     musicBtn.addEventListener("click", () => {
         if (user.musicOn) {
@@ -66,9 +66,14 @@ document.addEventListener("DOMContentLoaded", function () {
     removeBtn.addEventListener("click", () => {
         if (window.confirm("即將清除重置者資料")) {
             localStorage.removeItem('ResetPoint')
-            window.location.href = 'reset.html'
+            window.parent.document.getElementById('contentFrame').src = 'reset.html'
         }
     })
+
+    function clamp(val, min, max) {
+        return Math.max(min, Math.min(max, val));
+    }
+
     resetpjBtn.addEventListener("click", () => {
         if (window.confirm("即將重置副本資料")) {
             for (const key in user.chapterChoices) {
@@ -93,16 +98,15 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem('ResetPoint', JSON.stringify(user))
             console.log(user)
 
-            //const currentPage = window.location.pathname;
+            const currentPage = window.parent.document.getElementById('contentFrame').src;
 
-            const iframe = document.getElementById('contentFrame');
-            const currentPage = iframe.src;
+            console.log(currentPage)
 
-            if (currentPage.includes('article.html') ||
-                currentPage.includes('ending.html') ||
-                currentPage.includes('result.html') ||
-                currentPage.includes('root.html')) {
-                iframe.src = 'root.html';  // 刷新 or 跳轉
+            if (currentPage.includes('article.html') || currentPage.includes('ending.html') || currentPage.includes('result.html') || currentPage.includes('root.html')) {
+                window.parent.document.getElementById('contentFrame').src = 'root.html';
+            }
+            else {
+                window.parent.document.getElementById('contentFrame').src = currentPage
             }
         }
     })
