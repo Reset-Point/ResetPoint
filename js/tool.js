@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </svg>`
 
     settingBtn.addEventListener("click", () => {
-        window.location.href = 'https://reset-point.github.io/ResetPointProposal/'
+        window.open('https://reset-point.github.io/ResetPointProposal/', '_blank');
     })
     musicBtn.addEventListener("click", () => {
         if (user.musicOn) {
@@ -66,9 +66,14 @@ document.addEventListener("DOMContentLoaded", function () {
     removeBtn.addEventListener("click", () => {
         if (window.confirm("即將清除重置者資料")) {
             localStorage.removeItem('ResetPoint')
-            window.location.href = 'reset.html'
+            window.parent.document.getElementById('contentFrame').src = 'reset.html'
         }
     })
+
+    function clamp(val, min, max) {
+        return Math.max(min, Math.min(max, val));
+    }
+
     resetpjBtn.addEventListener("click", () => {
         if (window.confirm("即將重置副本資料")) {
             for (const key in user.chapterChoices) {
@@ -81,22 +86,27 @@ document.addEventListener("DOMContentLoaded", function () {
             user.resetTimes += 1
 
             //推導劇情屬性
-            let affection = Math.round(user.intelligence * 1.5 + user.fortune * 1.0);
-            let security = Math.round(user.strength * 1.2 + user.agility * 1.0);
-            let sanity = Math.round(user.intelligence * 1.0 + user.fortune * 1.2 - user.strength * 0.5);
+            let affection = Math.round(user.intelligence * 2.0 + user.fortune * 1.5);
+            let security = Math.round(user.strength * 1.7 + user.agility * 1.5);
+            let sanity = Math.round(user.intelligence * 1.0 + user.fortune * 1.2 + user.strength * 1.5 + user.agility * 0.7);
 
             //限制在安全範圍（讓死亡偶爾發生）
-            user.affection = clamp(affection, 30, 45);
-            user.security = clamp(security, 25, 45);
-            user.sanity = clamp(sanity, 30, 50);
+            user.affection = clamp(affection, 0, 50);
+            user.security = clamp(security, 0, 40);
+            user.sanity = clamp(sanity, 40, 100);
 
             localStorage.setItem('ResetPoint', JSON.stringify(user))
             console.log(user)
 
-            const currentPage = window.location.pathname;
+            const currentPage = window.parent.document.getElementById('contentFrame').src;
+
+            console.log(currentPage)
 
             if (currentPage.includes('article.html') || currentPage.includes('ending.html') || currentPage.includes('result.html') || currentPage.includes('root.html')) {
-                window.location.href = 'root.html';
+                window.parent.document.getElementById('contentFrame').src = 'root.html';
+            }
+            else {
+                window.parent.document.getElementById('contentFrame').src = currentPage
             }
         }
     })

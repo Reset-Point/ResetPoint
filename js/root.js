@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const userJson = localStorage.getItem('ResetPoint');
     if (!userJson) {
         alert("使用者資料遺失，請重新開始遊戲。");
-        window.location.href = 'home.html';
+        window.parent.document.getElementById('contentFrame').src = 'home.html';
         return;
     }
     const user = JSON.parse(userJson);
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     enterBtn.addEventListener('click', () => {
         const chapterNum = getLeafNumber(user.currentChapter);
         const url = chapterNum <= 5 ? 'article.html' : 'ending.html';
-        window.location.href = url;
+        window.parent.document.getElementById('contentFrame').src = url;
     });
 
 });

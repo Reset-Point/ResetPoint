@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const userJson = localStorage.getItem('ResetPoint');
     if (!userJson) {
         console.warn('沒有找到 ResetPoint 資料');
-        window.location.href = 'reset.html';
+        window.parent.document.getElementById('contentFrame').src = 'reset.html';
         return;
     }
     const user = JSON.parse(userJson);
@@ -283,7 +283,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('enterBtn').addEventListener('click', () => {
         if (document.getElementById('gameName').innerText === '甜蜜偽像') {
-            window.location.href = 'root.html';
+            window.parent.document.getElementById('contentFrame').src = 'root.html'
+            if (user.musicOn) {
+                parent.postMessage({ type: 'MUSIC', action: 'play' }, '*');
+            }
         }
     });
 

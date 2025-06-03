@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const userJson = localStorage.getItem('ResetPoint');
     if (!userJson) {
         console.warn('沒有找到 ResetPoint 資料');
-        window.location.href = 'home.html'
+        window.parent.document.getElementById('contentFrame').src = 'home.html'
     }
     const user = JSON.parse(userJson);
     console.log(user);
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
             container.style.display = 'none';
             user.missions[key].rewardClaimed = true;
             localStorage.setItem('ResetPoint', JSON.stringify(user));
-            window.location.reload();
+            window.parent.document.getElementById('contentFrame').src = 'mission.html';
         });
     });
 });
